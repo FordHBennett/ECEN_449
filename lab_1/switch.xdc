@@ -38,3 +38,16 @@ set_property IOSTANDARD LVCMOS33 [get_ports reset]
 
 set_property PACKAGE_PIN L16 [get_ports CLOCK]
 set_property IOSTANDARD LVCMOS33 [get_ports CLOCK]
+
+##Clock signal
+##IO_L11P_T1_SRCC_35
+set_property PACKAGE_PIN K17 [ get_ports FastClk]
+set_property IOSTANDARD LVCMOS33 [ get_ports FastClk]
+create_clock -add -name sys_clk_pin -period 8.00 -waveform {0 4} [get_ports FastClk]
+
+##Buttons
+##IO_L20P_T3_34
+set_property PACKAGE_PIN K18 [ get_ports {BTNs[0]}]
+set_property IOSTANDARD LVCMOS33 [ get_ports {BTNs[0]}]
+set_property PACKAGE_PIN P16 [ get_ports {BTNs[1]}]
+set_property IOSTANDARD LVCMOS33 [ get_ports {BTNs[1]}]

@@ -1,10 +1,7 @@
 module jackpot (
     input wire clk,        // Clock input
     input wire reset,      // Reset input
-    input wire sw0, // Switches input
-    input wire sw1, // Switches input
-    input wire sw2, // Switches input
-    input wire sw3, // Switches input
+    input wire [3:0] SWITCHES,       // switches
     output wire [3:0] LED  // 4-bit LED output
 );
 
@@ -24,16 +21,16 @@ always @(posedge clk or posedge reset) begin
             count <= 4'b0000;  // Reset the counter to 0
             led_count <= 4'b0000;
         end
-        else if(sw0 == count[0]) begin
+        else if(SWITCHES[0] == count[0]) begin
             count <= 4'b1111;
         end
-        else if(sw1 == count[1]) begin
+        else if(SWITCHES[1] == count[1]) begin
             count <= 4'b1111;
         end
-        else if(sw2 == count[2]) begin
+        else if(SWITCHES[2] == count[2]) begin
             count <= 4'b1111;
         end
-        else if(sw3 == count[3]) begin
+        else if(SWITCHES[3] == count[3]) begin
             count <= 4'b1111;
         end
         else if (count == 4'b1111) begin
@@ -41,7 +38,7 @@ always @(posedge clk or posedge reset) begin
             led_count <= 4'b0000;
         end
         else begin
-            led_count <= led_count + 2;
+            led_count <= led_count + 1 + 2;
             count <= count + led_count;
         end
     end

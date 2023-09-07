@@ -14,9 +14,11 @@ always @(posedge clk or posedge reset) begin
         counter <= 25'b0;  // Reset the counter to 0
     end else begin
         counter <= counter + 1;
+        $display("counter: %d", counter);
     end
 end
 
 assign clk_slow = (counter == clk_divisor - 1);
+$display("clk_slow: %d", clk_slow);
 
 endmodule

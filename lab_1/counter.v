@@ -8,6 +8,7 @@ module Counter (
 
 reg [3:0] count = 4b'0000;           // 4-bit counter register
 parameter CLOCK_DIVISOR = 125000000;
+reg clk_slow;
 clock_divider clk_divider(clk, reset, CLOCK_DIVISOR, clk_slow);
 
 
@@ -19,7 +20,6 @@ always @(posedge clk_slow or posedge reset) begin
     end else if (BTN1) begin
         count <= count - 1; // Decrement the counter on BTN1 press
     end
-    // Add additional conditions for other behaviors if needed.
 end
 
 

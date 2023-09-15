@@ -1,14 +1,13 @@
 module jackpot (
-    input wire clk,        // Clock input
-    input wire reset,      // Reset input
-    input wire [3:0] SWITCHES,       // switches
-    output wire [3:0] LEDS  // 4-bit LED output
+    input clk,        // Clock input
+    input reset,      // Reset input
+    input [3:0] SWITCHES,       // switches
+    output [3:0] LEDS  // 4-bit LED output
 );
 
-reg [3:0] count = 1'b0000;           // 4-bit counter register
-parameter CLOCK_DIVISOR = (125000000 / 4);
+reg [3:0] count = 0;           // 4-bit counter register
 reg clk_slow;
-clock_divider clk_divider(clk, reset, CLOCK_DIVISOR, clk_slow);
+clock_divider clk_divider(clk, reset, clk_slow);
 
 always @(posedge clk_slow or posedge reset) begin
     if (reset) begin
